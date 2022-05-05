@@ -4,14 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
-public class User {
+public class Diet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String personName;
+    @OneToOne
+    private User user;
 
     public Long getId() {
         return id;
@@ -21,11 +23,11 @@ public class User {
         this.id = id;
     }
 
-    public String getPersonName() {
-        return personName;
+    public User getUser() {
+        return user;
     }
 
-    public void setPersonName(String personName) {
-        this.personName = personName;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
