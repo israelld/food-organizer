@@ -1,0 +1,13 @@
+package dev.israelld.hotomfop.models.enums;
+
+public enum GroupMacro {
+
+    CARBOHYDRATES,
+    LIPIDS,
+    PROTEINS,
+    CARBOHYDRATES_AND_LIPIDS,
+    PROTEINS_AND_CARBOHYDRATES,
+    LIPIDS_AND_PROTEINS,
+    CARBOHYDRATES_AND_LIPIDS_AND_PROTEINS;
+
+}
