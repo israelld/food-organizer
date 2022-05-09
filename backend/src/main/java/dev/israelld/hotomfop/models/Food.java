@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import java.util.List;
 
 @Entity
-public class Food extends Exception{
+public class Food{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -13,7 +13,7 @@ public class Diet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
-    private User user;
+    private Person person;
     private String nameIdentifier;
 
     public Long getId() {
@@ -22,11 +22,11 @@ public class Diet {
     public void setId(Long id) {
         this.id = id;
     }
-    public User getUser() {
-        return user;
+    public Person getUser() {
+        return person;
     }
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Person user) {
+        this.person = user;
     }
     public String getNameIdentifier() {
         return nameIdentifier;
