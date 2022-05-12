@@ -21,9 +21,6 @@ public class Food{
     private double caloriePerOneHundredGrams;
     private double caloriePerPortion;
 
-    public Long getId() {
-        return id;
-    }
 
     public void setId(Long id) {
         this.id = id;
