@@ -1,7 +1,5 @@
 package dev.israelld.foodorganizer.models;
 
-import dev.israelld.foodorganizer.models.enums.MealType;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +11,7 @@ public class Meal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private MealType mealType;
+    private String mealType;
     @ManyToOne
     private Diet diet;
 
@@ -25,11 +23,11 @@ public class Meal {
         this.id = id;
     }
 
-    public MealType getMealType() {
+    public String getMealType() {
         return mealType;
     }
 
-    public void setMealType(MealType mealType) {
+    public void setMealType(String mealType) {
         this.mealType = mealType;
     }
 

@@ -6,12 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Person {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String personName;
+    private String userName;
 
     public Long getId() {
         return id;
@@ -22,10 +22,10 @@ public class Person {
     }
 
     public String getPersonName() {
-        return personName;
+        return userName;
     }
 
     public void setPersonName(String personName) {
-        this.personName = personName;
+        this.userName = personName;
     }
 }

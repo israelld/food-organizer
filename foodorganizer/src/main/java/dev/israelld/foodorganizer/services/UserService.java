@@ -1,7 +1,8 @@
 package dev.israelld.foodorganizer.services;
 
-import dev.israelld.foodorganizer.models.Person;
-import dev.israelld.foodorganizer.repositories.PersonRepository;
+
+import dev.israelld.foodorganizer.models.User;
+import dev.israelld.foodorganizer.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,28 +10,28 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PersonService {
+public class UserService {
 
     @Autowired
-    private PersonRepository repository;
+    private UserRepository repository;
 
-    public Person findById(Long id) {
-        Optional<Person> obj = repository.findById(id);
+    public User findById(Long id) {
+        Optional<User> obj = repository.findById(id);
         return obj.orElse(null);
     }
 
-    public List<Person> findAll() {
+    public List<User> findAll() {
         return repository.findAll();
     }
 
-    public Person update(Long id, Person obj) {
-        Person newObj = findById(id);
+    public User update(Long id, User obj) {
+        User newObj = findById(id);
         newObj.setId(id);
         newObj.setPersonName(obj.getPersonName());
         return repository.save(newObj);
     }
 
-    public Person create(Person obj) {
+    public User create(User obj) {
         return repository.save(obj);
     }
 

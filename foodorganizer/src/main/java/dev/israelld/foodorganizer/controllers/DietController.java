@@ -3,7 +3,7 @@ package dev.israelld.foodorganizer.controllers;
 import dev.israelld.foodorganizer.models.Diet;
 import dev.israelld.foodorganizer.models.Person;
 import dev.israelld.foodorganizer.services.DietService;
-import dev.israelld.foodorganizer.services.PersonService;
+import dev.israelld.foodorganizer.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class DietController {
     @Autowired
     private DietService service;
     @Autowired
-    private PersonService personService;
+    private UserService personService;
 
     @GetMapping("/{id}")
     public ResponseEntity<Diet> GetById(@PathVariable Long id) {

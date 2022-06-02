@@ -1,11 +1,6 @@
 package dev.israelld.foodorganizer.controllers.forms;
 
-import dev.israelld.foodorganizer.models.Diet;
-import dev.israelld.foodorganizer.models.Meal;
-import dev.israelld.foodorganizer.models.Person;
-import dev.israelld.foodorganizer.models.enums.MealType;
-
-import javax.persistence.ManyToOne;
+import java.util.List;
 
 public class FullMenuForm {
 
@@ -13,14 +8,12 @@ public class FullMenuForm {
 
     private String nameIdentifier;
 
-    private MealType mealType;
+    private List<String> mealType;
 
-    private Diet diet;
-
-    private Person person;
-
-    private Meal meal;
+    private List<Long> foodId;
 
     private Integer quantity;
+
+
 
 }

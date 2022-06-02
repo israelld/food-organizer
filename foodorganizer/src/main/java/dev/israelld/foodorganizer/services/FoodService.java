@@ -27,7 +27,6 @@ public class FoodService {
         Food newObj = findById(id);
         newObj.setId(id);
         newObj.setFoodName(obj.getFoodName());
-        newObj.setGroupMacro(obj.getGroupMacro());
         newObj.setGroupType(obj.getGroupType());
         newObj.setPortionType(obj.getPortionType());
         newObj.setCaloriePerOneHundredGrams(obj.getCaloriePerOneHundredGrams());

@@ -1,6 +1,5 @@
 package dev.israelld.foodorganizer.models;
 
-import dev.israelld.foodorganizer.models.enums.GroupMacro;
 import dev.israelld.foodorganizer.models.enums.GroupType;
 
 import javax.persistence.Entity;
@@ -14,12 +13,10 @@ public class Food{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String foodName;
-    private GroupMacro groupMacro;
-    private GroupType groupType;
+    private String groupType;
     private String portionType;
     private double caloriePerOneHundredGrams;
     private double caloriePerPortion;
-
 
     public void setId(Long id) {
         this.id = id;
@@ -33,19 +30,11 @@ public class Food{
         this.foodName = foodName;
     }
 
-    public GroupMacro getGroupMacro() {
-        return groupMacro;
-    }
-
-    public void setGroupMacro(GroupMacro groupMacro) {
-        this.groupMacro = groupMacro;
-    }
-
-    public GroupType getGroupType() {
+    public String getGroupType() {
         return groupType;
     }
 
-    public void setGroupType(GroupType groupType) {
+    public void setGroupType(String groupType) {
         this.groupType = groupType;
     }
 
