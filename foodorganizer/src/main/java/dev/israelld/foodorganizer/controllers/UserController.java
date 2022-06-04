@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/user")
 @CrossOrigin("*")
-public class PersonController {
+public class UserController {
 
     @Autowired
     private UserService service;
@@ -28,14 +28,14 @@ public class PersonController {
         return ResponseEntity.ok().body(list);
     }
     @PostMapping
-    public ResponseEntity<User> Post(@RequestBody User person) {
-        return ResponseEntity.status(HttpStatus.GONE).body(service.create(person));
+    public ResponseEntity<User> Post(@RequestBody User user) {
+        return ResponseEntity.status(HttpStatus.GONE).body(service.create(user));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> Put(@PathVariable Long id, @RequestBody User obj) {
-        User newPerson = service.update(id, obj);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(newPerson);
+        User newUser = service.update(id, obj);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(newUser);
     }
 
     @DeleteMapping("/{id}")

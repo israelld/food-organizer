@@ -33,7 +33,7 @@ public class FoodController {
         return ResponseEntity.status(HttpStatus.GONE).body(service.create(food));
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Food> Put(@PathVariable Long id, @RequestBody Food obj, @RequestBody Food obj2) {
+    public ResponseEntity<Food> Put(@PathVariable Long id, @RequestBody Food obj) {
         Food newFood = service.update(id, obj);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(newFood);
     }

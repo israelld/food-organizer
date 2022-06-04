@@ -1,8 +1,9 @@
 package dev.israelld.foodorganizer.services;
 
 import dev.israelld.foodorganizer.models.Diet;
-import dev.israelld.foodorganizer.models.Person;
+import dev.israelld.foodorganizer.models.User;
 import dev.israelld.foodorganizer.repositories.DietRepository;
+import dev.israelld.foodorganizer.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,20 +14,28 @@ import java.util.Optional;
 public class DietService {
 
     @Autowired
-    private DietRepository repository;
+    private DietRepository dietRepository;
 
-    public List<Diet> findByPerson(Person person) {
-        List<Diet> obj = this.repository.findByPerson(person);
-        return obj;
-    }
+    @Autowired
+    private UserService userService;
 
     public Diet findById(Long id) {
-        Optional<Diet> obj = repository.findById(id);
+        Optional<Diet> obj = dietRepository.findById(id);
         return obj.orElse(null);
     }
 
+    public Diet findByDietNameIdentifierOrCreate(User user, String nameIdentifier){
+        Diet obj = dietRepository.findByNameIdentifier(nameIdentifier);
+        //return obj == null ? this.create(new Diet(diet.getUser(), nameIdentifier)) : obj;
+        if(obj == null){
+            obj = this.create(new Diet(userService.findByUserNameOrCreate(user.getUserName()), nameIdentifier));
+            return obj;
+        }
+        return obj;
+    }
+
     public List<Diet> findAll() {
-        return repository.findAll();
+        return dietRepository.findAll();
     }
 
     public Diet update(Long id, Diet obj) {
@@ -34,14 +43,15 @@ public class DietService {
         newObj.setId(id);
         newObj.setUser(obj.getUser());
         newObj.setNameIdentifier(obj.getNameIdentifier());
-        return repository.save(newObj);
+        return dietRepository.save(newObj);
     }
 
     public Diet create(Diet obj) {
-        return repository.save(obj);
+        return dietRepository.save(obj);
     }
+
     public void delete(Long id) {
         findById(id);
-        repository.deleteById(id);
+        dietRepository.deleteById(id);
     }
 }

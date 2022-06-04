@@ -1,10 +1,6 @@
 package dev.israelld.foodorganizer.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Diet {
@@ -12,11 +8,17 @@ public class Diet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    private Person person;
+    @ManyToOne
+    private User user;
     private String nameIdentifier;
 
+    public Diet() {
+    }
 
+    public Diet(User user, String nameIdentifier) {
+        this.user = user;
+        this.nameIdentifier = nameIdentifier;
+    }
 
     public Long getId() {
         return id;
@@ -24,11 +26,11 @@ public class Diet {
     public void setId(Long id) {
         this.id = id;
     }
-    public Person getUser() {
-        return person;
+    public User getUser() {
+        return user;
     }
-    public void setUser(Person user) {
-        this.person = user;
+    public void setUser(User user) {
+        this.user = user;
     }
     public String getNameIdentifier() {
         return nameIdentifier;

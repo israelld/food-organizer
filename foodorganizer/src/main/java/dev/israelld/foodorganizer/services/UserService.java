@@ -20,6 +20,15 @@ public class UserService {
         return obj.orElse(null);
     }
 
+    public User findByUserNameOrCreate(String userName){
+        User obj = repository.findByUserName(userName);
+        if(obj == null){
+            obj = this.create(new User(userName));
+            return obj;
+        }
+        return obj;
+    }
+
     public List<User> findAll() {
         return repository.findAll();
     }
@@ -27,7 +36,7 @@ public class UserService {
     public User update(Long id, User obj) {
         User newObj = findById(id);
         newObj.setId(id);
-        newObj.setPersonName(obj.getPersonName());
+        newObj.setUserName(obj.getUserName());
         return repository.save(newObj);
     }
 

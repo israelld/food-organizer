@@ -15,6 +15,14 @@ public class Meal {
     @ManyToOne
     private Diet diet;
 
+    public Meal() {
+    }
+
+    public Meal(String mealType, Diet diet) {
+        this.mealType = mealType;
+        this.diet = diet;
+    }
+
     public Long getId() {
         return id;
     }

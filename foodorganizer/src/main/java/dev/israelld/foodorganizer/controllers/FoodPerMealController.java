@@ -45,7 +45,12 @@ public class FoodPerMealController {
     }
 
     @PostMapping
-    public ResponseEntity<FoodPerMeal> Post(@RequestBody FoodPerMeal foodPerMeal) {
+    public ResponseEntity<FoodPerMeal> Post(@RequestBody List<FoodPerMeal> foodPerMealList) {
+        foodPerMeal.setFood(foodService.findById(foodPerMeal.getFood().getId()));
+        foodPerMeal.setMeal(mealService.findByMealTypeOrCreate(
+                foodPerMeal.getMeal().getDiet().getUser(),
+                foodPerMeal.getMeal().getDiet(),
+                foodPerMeal.getMeal().getMealType()));
         return ResponseEntity.status(HttpStatus.GONE).body(foodPerMealService.create(foodPerMeal));
     }
 

@@ -42,8 +42,9 @@ public class MealController {
     }
 
     @PostMapping
-    public ResponseEntity<Meal> Post(@RequestBody Meal diet) {
-        return ResponseEntity.status(HttpStatus.GONE).body(mealService.create(diet));
+    public ResponseEntity<Meal> Post(@RequestBody Meal meal) {
+        meal.setDiet(dietService.findByDietNameIdentifierOrCreate(meal.getDiet().getUser(), meal.getDiet().getNameIdentifier()));
+        return ResponseEntity.status(HttpStatus.GONE).body(mealService.create(meal));
     }
 
     @PutMapping("/{id}")
