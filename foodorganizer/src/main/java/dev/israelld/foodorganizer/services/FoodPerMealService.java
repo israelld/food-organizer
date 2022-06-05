@@ -30,9 +30,18 @@ public class FoodPerMealService {
         return obj;
     }
 
-    public FoodPerMeal update(Long id, FoodPerMeal obj) {
+    public FoodPerMeal updateById(Long id, FoodPerMeal obj) {
         FoodPerMeal newObj = findById(id);
         newObj.setId(id);
+        newObj.setFood(obj.getFood());
+        newObj.setMeal(obj.getMeal());
+        newObj.setQuantity(obj.getQuantity());
+        return repository.save(newObj);
+    }
+
+    public FoodPerMeal update(FoodPerMeal obj) {
+        FoodPerMeal newObj = findById(obj.getId());
+        newObj.setId(obj.getId());
         newObj.setFood(obj.getFood());
         newObj.setMeal(obj.getMeal());
         newObj.setQuantity(obj.getQuantity());

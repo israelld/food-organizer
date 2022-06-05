@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -32,7 +33,6 @@ public class FoodPerMealController {
 
     @GetMapping("/meal/{id}")
     public ResponseEntity<List<FoodPerMeal>> GetByPersonId(@PathVariable Long id) {
-
         Meal meal = mealService.findById(id);
         List<FoodPerMeal> obj = this.foodPerMealService.findByMeal(meal);
         return ResponseEntity.ok().body(obj);
@@ -45,19 +45,34 @@ public class FoodPerMealController {
     }
 
     @PostMapping
-    public ResponseEntity<FoodPerMeal> Post(@RequestBody List<FoodPerMeal> foodPerMealList) {
-        foodPerMeal.setFood(foodService.findById(foodPerMeal.getFood().getId()));
-        foodPerMeal.setMeal(mealService.findByMealTypeOrCreate(
-                foodPerMeal.getMeal().getDiet().getUser(),
-                foodPerMeal.getMeal().getDiet(),
-                foodPerMeal.getMeal().getMealType()));
-        return ResponseEntity.status(HttpStatus.GONE).body(foodPerMealService.create(foodPerMeal));
+    public ResponseEntity<List<FoodPerMeal>> Post(@RequestBody List<FoodPerMeal> foodPerMealList) {
+        List<FoodPerMeal> buildedList = new ArrayList<FoodPerMeal>();
+        for(FoodPerMeal foodPerMeal : foodPerMealList){
+            foodPerMeal.setFood(foodService.findById(foodPerMeal.getFood().getId()));
+            foodPerMeal.setMeal(mealService.findByMealTypeOrCreate(
+                    foodPerMeal.getMeal().getDiet().getUser(),
+                    foodPerMeal.getMeal().getDiet(),
+                    foodPerMeal.getMeal().getMealType()));
+            buildedList.add(foodPerMealService.create(foodPerMeal));
+        }
+
+        return ResponseEntity.status(HttpStatus.GONE).body(buildedList);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<FoodPerMeal> Put(@PathVariable Long id, @RequestBody FoodPerMeal obj) {
-        FoodPerMeal newFoodPerMeal = foodPerMealService.update(id, obj);
+        FoodPerMeal newFoodPerMeal = foodPerMealService.updateById(id, obj);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(newFoodPerMeal);
+    }
+
+    @PutMapping("/list")
+    public ResponseEntity<List<FoodPerMeal>> PutList(@RequestBody List<FoodPerMeal> foodPerMealList) {
+        List<FoodPerMeal> buildedList = new ArrayList<FoodPerMeal>();
+        for(FoodPerMeal foodPerMeal : foodPerMealList){
+            buildedList.add(foodPerMealService.update(foodPerMeal));
+        }
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(buildedList);
     }
 
     @DeleteMapping("/{id}")

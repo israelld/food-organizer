@@ -1,10 +1,6 @@
 package dev.israelld.foodorganizer.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class FoodPerMeal {
@@ -14,7 +10,7 @@ public class FoodPerMeal {
     private Long id;
     @ManyToOne
     private Food food;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Meal meal;
     private Integer quantity;
 
