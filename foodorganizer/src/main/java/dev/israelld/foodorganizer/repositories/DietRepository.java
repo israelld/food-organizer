@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface DietRepository extends JpaRepository<Diet, Long> {
 
-    Diet findByNameIdentifier(String nameIdentifier);
+    List<Diet> findByNameIdentifier(String nameIdentifier);
 
 }

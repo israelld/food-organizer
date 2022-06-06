@@ -1,6 +1,7 @@
 package dev.israelld.foodorganizer.services;
 
 import dev.israelld.foodorganizer.models.Diet;
+import dev.israelld.foodorganizer.models.FoodPerMeal;
 import dev.israelld.foodorganizer.models.User;
 import dev.israelld.foodorganizer.repositories.DietRepository;
 import dev.israelld.foodorganizer.repositories.UserRepository;
@@ -25,9 +26,15 @@ public class DietService {
     }
 
     public Diet findByDietNameIdentifierOrCreate(User user, String nameIdentifier){
-        Diet obj = dietRepository.findByNameIdentifier(nameIdentifier);
+
+        List<Diet> objList = dietRepository.findByNameIdentifier(nameIdentifier);
+        Diet obj = null;
+        for(Diet diet : objList){
+            obj = diet;
+        }
         //return obj == null ? this.create(new Diet(diet.getUser(), nameIdentifier)) : obj;
-        if(obj == null){
+        if(objList == null){
+
             obj = this.create(new Diet(userService.findByUserNameOrCreate(user.getUserName()), nameIdentifier));
             return obj;
         }
@@ -41,7 +48,7 @@ public class DietService {
     public Diet update(Long id, Diet obj) {
         Diet newObj = findById(id);
         newObj.setId(id);
-        newObj.setUser(obj.getUser());
+        newObj.setUser(userService.update(obj.getUser().getId(), obj.getUser()));
         newObj.setNameIdentifier(obj.getNameIdentifier());
         return dietRepository.save(newObj);
     }

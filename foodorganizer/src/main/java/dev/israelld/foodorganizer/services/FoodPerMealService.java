@@ -15,6 +15,12 @@ public class FoodPerMealService {
 
     @Autowired
     private FoodPerMealRepository repository;
+    @Autowired
+    private MealService mealService;
+    @Autowired
+    private FoodService foodService;
+
+
 
     public FoodPerMeal findById(Long id) {
         Optional<FoodPerMeal> obj = repository.findById(id);

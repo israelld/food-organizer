@@ -8,7 +8,7 @@ public class Diet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade=CascadeType.ALL)
     private User user;
     private String nameIdentifier;
 

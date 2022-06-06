@@ -10,7 +10,7 @@ public class FoodPerMeal {
     private Long id;
     @ManyToOne
     private Food food;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Meal meal;
     private Integer quantity;
 
