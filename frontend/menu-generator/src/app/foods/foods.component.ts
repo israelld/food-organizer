@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Foods, ResponseFoods } from './food.model';
+import { FoodService } from './food.service';
 
 @Component({
   selector: 'app-foods',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FoodsComponent implements OnInit {
 
-  constructor() { }
+  foods: Foods[];
 
-  ngOnInit(): void {
+  constructor(private foodService: FoodService) {
+    //this.responseFoods = [];
+  }
+
+  ngOnInit() {
+    this.foodService.getFoods().subscribe(res => this.foods = res)
   }
 
 }

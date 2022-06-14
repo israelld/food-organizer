@@ -1,1 +1,11 @@
-<p>foods works!</p>
+<h1>Alimentos</h1>
+<table *ngIf="foods">
+    <thead>
+        <td> Nome </td>   
+    </thead>
+    <tbody>
+        <tr *ngFor="let food of foods">
+            <td> {{food.foodName}} </td>
+        </tr>
+    </tbody>
+</table>
